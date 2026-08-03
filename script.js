@@ -25,5 +25,8 @@ const observer = new IntersectionObserver(
   { threshold: 0.12 }
 );
 
-document.querySelectorAll('.reveal').forEach((element) => observer.observe(element));
+const anchoredSection = location.hash ? document.querySelector(location.hash) : null;
+anchoredSection?.querySelectorAll('.reveal').forEach((element) => element.classList.add('visible'));
+
+document.querySelectorAll('.reveal:not(.visible)').forEach((element) => observer.observe(element));
 document.querySelector('#year').textContent = new Date().getFullYear();
